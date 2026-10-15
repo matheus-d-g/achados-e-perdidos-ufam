@@ -14,17 +14,6 @@ const pool = new Pool({
     password: '', // Colocar a senhaaaaaa
     port: 5432,
 });
-/*================================================================================================================
-Mudar as URLs locais (localhost): No seu script.js, todas as rotas do fetch apontam para http://localhost:3000. 
-Isso funciona na sua máquina, mas se outra pessoa abrir o seu site no portfólio dela, o navegador dela vai tentar 
-buscar o servidor no próprio computador dela e vai dar erro. Vamos precisar mudar isso para uma URL real de onde o 
-servidor estiver hospedado (como Render, Railway ou Fly.io).
-
-• Criar um arquivo .gitignore: Esse é um arquivo de texto simples que avisa o GitHub: "Olha, ignora a pasta node_modules 
-e o meu arquivo secreto .env, não joga eles na internet". A pasta node_modules é gigantesca e nunca deve ser enviada para o GitHub.
-
-==================================================================================================================
-*/
 
 // Função auxiliar para gerar um Token de 6 caracteres maiúsculos/números
 function gerarTokenSeguranca() {
@@ -37,7 +26,6 @@ function gerarTokenSeguranca() {
 }
 
 // ROTA ATUALIZADA: Gera o token, salva no banco e devolve para o Front-end
-// ASSURE QUE A SUA ROTA POST RETORNA O TOKEN ASSIM:
 app.post('/cadastrar-item', async (req, res) => {
     const { item, categoria, descricao, local, sala, telefone, email, na_guarita } = req.body;
     const tokenSeguranca = gerarTokenSeguranca(); 
@@ -51,7 +39,7 @@ app.post('/cadastrar-item', async (req, res) => {
         
         const resultado = await pool.query(queryText, values);
         
-        // MUDANÇA AQUI: Enviamos os dados da linha recém inserida (rows[0])
+        //  Enviamos os dados da linha recém inserida (rows[0])
         res.status(201).json({ 
             success: true, 
             token_seguranca: tokenSeguranca, 
@@ -74,11 +62,9 @@ app.delete('/deletar-item/:id', async (req, res) => {
         if (buscarItem.rows.length === 0) {
             return res.status(404).json({ success: false, error: "Item não encontrado." });
         }
-
-        // CORREÇÃO AQUI: Como rows é um Array, precisamos pegar a posição [0]
         const tokenBanco = buscarItem.rows[0].token_seguranca;
 
-        // Se o item no banco não tiver token por algum motivo antigo
+        // Se o item no banco não tiver token por algum motivo antigo  - tiver dor de cabeça com esse token
         if (!tokenBanco) {
             return res.status(400).json({ success: false, error: "Este item antigo não possui código de segurança." });
         }
