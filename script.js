@@ -104,7 +104,6 @@ formulario.addEventListener("submit", async function(event) {
             body: JSON.stringify(dadosFormulario)
         });
 
-        // Procure esse trecho dentro do submit do formulário no seu script.js e ajuste:
        const resultado = await resposta.json();
 
         if (resultado.success) {
@@ -140,7 +139,7 @@ formulario.addEventListener("submit", async function(event) {
             }
         });
 
-// Função auxiliar de IHC para criar o arquivo e baixar
+// Função auxiliar para criar o arquivo e baixar um txt, o usuario nao vai memorizar um token nunca
 function baixarComprovanteSeguranca(nomeItem, token) {
     const textoComprovante = `
 ===================================================
@@ -152,7 +151,7 @@ DATA: ${new Date().toLocaleDateString('pt-BR')}
 🔑 SEU CÓDIGO DE SEGURANÇA: ${token}
 
 ---------------------------------------------------
-INSTRUÇÕES DE SEGURANÇA (IHC):
+INSTRUÇÕES DE SEGURANÇA!!:
 Quando o dono legítimo vier buscar o objeto, peça 
 para ele confirmar as características do item. 
 
