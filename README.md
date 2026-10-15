@@ -1,17 +1,24 @@
 # 🔍 Achados e Perdidos | UFAM
 
-Um sistema web completo, responsivo e focado em Interação Humano-Computador (IHC) para gerenciamento de objetos achados e perdidos na **Universidade Federal do Amazonas (UFAM)**. Este é um projeto pessoal desenvolvido com o objetivo de consolidar conceitos de integração entre Front-end, Back-end e Banco de Dados Relacional.
+Um sistema web focado em Interação Humano-Computador (IHC) para gerenciamento de objetos achados e perdidos na **Universidade Federal do Amazonas (UFAM)**. 
+
+---
+
+### ⚠️ Nota de Escopo Acadêmico & Estudo
+Este projeto foi desenvolvido **exclusivamente para fins didáticos e laboratoriais** como um dos meus primeiros experimentos full-stack. O objetivo principal foi consolidar conceitos práticos de arquitetura de software, compreendendo o fluxo de comunicação entre o Front-end, o Back-end (API local) e um Banco de Dados Relacional. 
+
+*O sistema foi projetado para rodar em ambiente de desenvolvimento local (localhost) e serve como base de portfólio para registrar minha evolução na programação.*
 
 ---
 
 ## 🎨 O Conceito de IHC & UX
 
-O grande diferencial deste projeto foi a aplicação prática dos conceitos de **IHC (Interação Humano-Computador)**, especificamente focando na redução dos **Golfos de Execução e Avaliação** de Donald Norman:
+A aplicação prática dos conceitos de **IHC (Interação Humano-Computador)** guiou o design do projeto, especificamente focando na redução dos **Golfos de Execução e Avaliação** de Donald Norman:
 
-- **Sem Barreiras de Cadastro:** Para incentivar a colaboração, o aluno que encontrou um objeto não precisa criar uma conta, confirmar e-mail ou fazer login. Ele vai direto ao ponto, reduzindo o Golfo de Execução a zero.
-- **Mecanismo Seguro de Baixa (Token de Segurança):** Para evitar que usuários de má-fé retirem itens do ar ou busquem objetos fingindo ser os donos, o sistema gera um **Token de Segurança único de 6 dígitos** no momento do cadastro. O navegador força o download automático de um arquivo `.txt` (comprovante) contendo o token. Na hora da devolução física, o dono informa o código ao aluno (ou guarita) para que o item seja devidamente excluído do banco de dados.
+- **Sem Barreiras de Cadastro:** Para incentivar a colaboração, o aluno que encontrou um objeto não precisa criar uma conta, confirmar e-mail ou fazer login. Ele vai direto ao ponto, reduzindo o Golfo de Execução.
+- **Mecanismo Seguro de Baixa (Token de Segurança):** Para evitar exclusões indevidas, o sistema gera um **Token de Segurança único de 6 dígitos** no momento do cadastro. O navegador força o download automático de um arquivo `.txt` contendo o token. Na hora da devolução física, o dono informa o código para que o item seja removido do banco.
 - **Opção Integrada para Guarita/Portaria:** O formulário adapta-se em tempo real se o usuário marcar que deixou o objeto na portaria, desabilitando campos de contato pessoal e inserindo um alerta visual específico no card para o dono saber onde buscar.
-- **Interface Nostálgica (Frutiger Aero):** O design de fundo utiliza o estilo visual clássico dos anos 2000 (Frutiger Aero), com bolhas flutuantes translúcidas tridimensionais geradas via CSS puro que carregam as **cores oficiais dos cursos da UFAM** (como o Azul Safira das Engenharias e o Verde Esmeralda das Ciências Biológicas).
+- **Interface Nostálgica (Frutiger Aero):** O design de fundo utiliza o estilo clássico dos anos 2000 (Frutiger Aero), com bolhas flutuantes translúcidas tridimensionais geradas via CSS puro que carregam as **cores oficiais dos cursos da UFAM** (como o Azul Safira das Engenharias e o Verde Esmeralda das Ciências Biológicas).
 
 ---
 
@@ -27,7 +34,7 @@ Este projeto foi construído utilizando uma arquitetura full-stack monolítica l
 
 ## 🚀 Estrutura do Banco de Dados
 
-A tabela `itens` no PostgreSQL foi projetada para armazenar de forma persistente os seguintes campos:
+A tabela `itens` no PostgreSQL foi projetada para armazenar de forma de desenvolvimento os seguintes campos:
 
 - `id`: Serial/Integer (Chave Primária)
 - `item`: Varchar
@@ -72,7 +79,7 @@ Navegue até a pasta do servidor pelo terminal e instale as dependências:
 npm install express pg cors
 ```
 
-Insira suas credenciais do banco no arquivo `server.js` e ligue o servidor:
+Insira suas credenciais locais do banco no arquivo `server.js` e ligue o servidor:
 ```bash
 node server.js
 ```
@@ -88,3 +95,14 @@ Basta abrir o arquivo `my_index.html` diretamente no seu navegador de preferênc
 - Manipulação e higienização de dados dinâmicos no Banco de Dados PostgreSQL para evitar SQL Injection usando parâmetros preparados (`$1, $2`).
 - Manipulação dinâmica do DOM em JavaScript para renderizar elementos na tela sem atualizar a página.
 - Gerenciamento de estados de formulários e acessibilidade visual em IHC.
+
+---
+
+## 🔮 Próximos Passos & Futuras Atualizações (Roadmap)
+
+Como parte do meu plano de estudos contínuos, pretendo implementar as seguintes melhorias técnicas e de regras de negócio em versões futuras:
+
+- [ ] **Segurança de Credenciais:** Migrar as chaves de acesso ao banco do código do servidor (`server.js`) para um arquivo de variáveis de ambiente escondido (`.env`).
+- [ ] **Refatoração de Regras de Negócio:** Ajustar fluxos lógicos de validação de formulários detectados durante a fase de testes.
+- [ ] **Hospedagem em Produção:** Adaptar as URLs estáticas de `localhost` para endpoints dinâmicos, visando publicar a API e o banco de dados em servidores em nuvem (como Render e Railway).
+- [ ] **Upload de Imagens:** Permitir anexar fotos reais dos objetos achados usando serviços de armazenamento de arquivos.
