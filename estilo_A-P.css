@@ -1,0 +1,433 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E CORES (Identidade UFAM)
+   ========================================================================== */
+:root {
+    --verde-ufam: #116234;
+    --verde-hover: #0b4624;
+    --azul-ufam: #143264;
+    --azul-claro: #e8effa;
+    --background: #f4f7f6;
+    --card-bg: rgba(255, 255, 255, 0.92); /* Deixado levemente transparente para o fundo aparecer */
+    --texto: #2d3748;
+    --texto-mutado: #718096;
+    --borda: rgba(226, 232, 240, 0.8);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--texto);
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    
+    /* Configuração do fundo com bolinhas flutuantes e acolhedoras */
+    background: linear-gradient(180deg, #f4f7f6 0%, #e2ece9 50%, #dbe7f3 100%);
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(17, 98, 52, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 75% 15%, rgba(20, 50, 100, 0.05) 0%, transparent 35%),
+        radial-gradient(circle at 40% 70%, rgba(17, 98, 52, 0.03) 0%, transparent 30%),
+        radial-gradient(circle at 85% 75%, rgba(20, 50, 100, 0.04) 0%, transparent 45%);
+    background-size: 200% 200%;
+    animation: ambienteAcolhedor 25s ease-in-out infinite alternate;
+}
+
+/* ==========================================================================
+   HEADER (Topo do site)
+   ========================================================================== */
+header {
+    background: linear-gradient(135deg, var(--azul-ufam), var(--verde-ufam));
+    color: white;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    letter-spacing: -0.5px;
+    z-index: 2;
+    position: relative;
+}
+
+/* Elementos flutuantes decorativos no fundo do Header */
+header::before, header::after {
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    animation: flutuarHeader 6s ease-in-out infinite alternate;
+}
+
+header::before {
+    width: 150px;
+    height: 150px;
+    top: -20px;
+    left: 10%;
+}
+
+header::after {
+    width: 100px;
+    height: 100px;
+    bottom: -10px;
+    right: 12%;
+    animation-delay: 2s;
+}
+
+/* ==========================================================================
+   LAYOUT PRINCIPAL E SEÇÕES (Flexbox/Grid adaptável)
+   ========================================================================== */
+.container-principal {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: relative;
+    z-index: 1; /* Garante que o conteúdo fique acima do fundo animado */
+}
+
+/* No desktop, o formulário e a listagem ficam lado a lado */
+@media (min-width: 992px) {
+    .container-principal {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .secao-cadastro {
+        flex: 1;
+        position: sticky;
+        top: 2rem;
+    }
+    
+    .secao-listagem {
+        flex: 1.8;
+    }
+}
+
+.secao-cadastro, .secao-listagem {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--borda);
+    backdrop-filter: blur(8px); /* Efeito de vidro sutil que interage com o fundo */
+}
+
+h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--azul-ufam);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--azul-claro);
+    padding-bottom: 0.5rem;
+}
+
+h3 i {
+    margin-right: 8px;
+    color: var(--verde-ufam);
+}
+
+/* ==========================================================================
+   FORMULÁRIO DE CADASTRO
+   ========================================================================== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.campo label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+/* Estilização padrão para Inputs e Selects */
+form input[type="text"], form select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(226, 232, 240, 1);
+    border-radius: 8px;
+    background-color: rgba(250, 250, 250, 0.8);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--texto);
+    transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus, form select:focus {
+    outline: none;
+    border-color: var(--verde-ufam);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(17, 98, 52, 0.1);
+}
+
+/* Estado desabilitado (enquanto não seleciona o bloco) */
+form select:disabled {
+    background-color: #e2e8f0;
+    color: #a0aec0;
+    cursor: not-allowed;
+}
+
+/* Botão de Envio */
+form button[type="submit"] {
+    background-color: var(--verde-ufam);
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 12px rgba(17, 98, 52, 0.2);
+}
+
+form button[type="submit"]:hover {
+    background-color: var(--verde-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(17, 98, 52, 0.3);
+}
+
+form button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   GRID DE ITENS RECENTES E CARDS
+   ========================================================================== */
+.grid-itens {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.card-item {
+    background-color: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(20, 50, 100, 0.08);
+}
+
+/* Detalhe lateral colorido baseado na categoria */
+.card-chave { border-left: 5px solid #ecc94b; }      /* Amarelo/Dourado */
+.card-eletronico { border-left: 5px solid #4299e1; } /* Azul */
+
+/* Tag pequena no topo do card */
+.tag-categoria {
+    align-self: flex-start;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    background-color: var(--azul-claro);
+    color: var(--azul-ufam);
+}
+
+.card-item h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--azul-ufam);
+    line-height: 1.3;
+}
+
+.card-item p {
+    font-size: 0.9rem;
+    color: var(--texto-mutado);
+}
+
+.card-item p i {
+    width: 18px;
+    color: var(--verde-ufam);
+}
+
+.card-item strong {
+    color: var(--texto);
+}
+
+/* ==========================================================================
+   ANIMAÇÕES
+   ========================================================================== */
+/* Animação suave para as esferas do Header */
+@keyframes flutuarHeader {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(15px) rotate(10deg); }
+}
+
+/* Movimentação lenta e orgânica das grandes esferas de cor no fundo do site */
+@keyframes ambienteAcolhedor {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 50% 100%; }
+    100% { background-position: 100% 0%; }
+}
+
+/* ==========================================================================
+   ESTILO FRUTIGER AERO - BOLHAS DE VIDRO 3D FLUTUANTES
+   ========================================================================== */
+/*
+---------------------------------------------------------------------------------------EDITAR PARA ADICIONAR MAIS BOLINHAS
+*/
+/* Esfera base com reflexo de vidro tridimensional dos anos 2000 */
+/* Esfera base com reflexo de vidro tridimensional dos anos 2000 (Frutiger Aero) */
+.bolha {
+    position: fixed;
+    border-radius: 50%;
+    z-index: -1;            /* Força ficar totalmente atrás de todo o conteúdo */
+    pointer-events: none;   /* Não atrapalha os cliques do usuário */
+    
+    /* Efeito de brilho de vidro branco no topo esquerdo de todas as bolhas */
+    background-image: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0.15) 100%);
+    
+    /* Sombra interna para dar volume esférico e sombra projetada suave */
+    box-shadow: inset -10px -10px 25px rgba(0, 0, 0, 0.2), 
+                inset 10px 10px 20px rgba(255, 255, 255, 0.6),
+                0 15px 30px rgba(0, 0, 0, 0.08);
+    
+    /* Filtro para dar aquele aspecto brilhante, molhado e translúcido */
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+/* Animação que faz as bolhas subirem balançando suavemente em formato de onda */
+@keyframes flutuarAero {
+    0% {
+        transform: translateY(0) translateX(0) scale(0.9);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.75; /* Aumentado para ficar bem nítido e acolhedor */
+    }
+    50% {
+        transform: translateY(-60vh) translateX(40px) scale(1.05);
+        opacity: 0.85;
+    }
+    85% {
+        opacity: 0.75;
+    }
+    100% {
+        transform: translateY(-120vh) translateX(-20px) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* ==================================================================
+   🎨 ESTILIZAÇÃO POR CURSOS / ÁREAS DA UFAM (GRADIENTES VIVOS)     | confesso que me empolguei um pouco quando terminei meu back-end, então resolvi deixar o site mais atraente e bonito 
+   ================================================================== */
+
+/* Bolha 1: Engenharia de Produção (Azul Marinho para Ciano) */
+.bolha-1 {
+    width: 180px; height: 180px; left: 3%; bottom: -200px;
+    background-color: #008080;
+    background-image: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(0, 242, 254, 0.4) 50%, rgba(79, 172, 254, 0.8) 100%);
+    animation: flutuarAero 26s linear infinite;
+}
+
+/* Bolha 2: Engenharia de Software (Azul Escuro para Roxo Elétrico) */
+.bolha-2 {
+    width: 130px; height: 130px; left: 52%; bottom: -150px;
+    background-color: #4b0082;
+    background-image: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(115, 67, 211, 0.4) 60%, rgba(24, 0, 81, 0.8) 100%);
+    animation: flutuarAero 19s linear infinite;
+    animation-delay: 3s;
+}
+
+/* Bolha 3: Sistemas de Informação (Azul Royal para Azul Turquesa) */
+.bolha-3 {
+    width: 100px; height: 100px; right: 5%; bottom: -110px;
+    background-color: #0040ff;
+    background-image: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(0, 255, 213, 0.4) 50%, rgba(0, 82, 212, 0.8) 100%);
+    animation: flutuarAero 21s linear infinite;
+    animation-delay: 1.5s;
+}
+
+/* Bolha 4: Engenharia Ambiental (Azul Petróleo para Verde Bandeira) */
+.bolha-4 {
+    width: 150px; height: 150px; left: 22%; bottom: -170px;
+    background-color: #006400;
+    background-image: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(0, 255, 136, 0.3) 50%, rgba(20, 78, 90, 0.8) 100%);
+    animation: flutuarAero 24s linear infinite;
+    animation-delay: 7s;
+}
+
+/* Bolha 5: Química Industrial (Azul Profundo para Rosa Choque - Contraste Lindo!) */
+.bolha-5 {
+    width: 110px; height: 110px; right: 35%; bottom: -130px;
+    background-color: #00008b;
+    background-image: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(255, 0, 128, 0.4) 50%, rgba(2, 27, 121, 0.8) 100%);
+    animation: flutuarAero 17s linear infinite;
+    animation-delay: 5s;
+}
+
+/* Bolha 6: Agronomia (Verde Oliva para Verde Limão) */
+.bolha-6 {
+    width: 140px; height: 140px; left: 40%; bottom: -160px;
+    background-color: #556b2f;
+    background-image: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(196, 255, 0, 0.4) 50%, rgba(46, 117, 89, 0.8) 100%);
+    animation: flutuarAero 25s linear infinite;
+    animation-delay: 11s;
+}
+
+/* Bolha 7: Farmácia e Saúde (Verde Esmeralda para Amarelo Ouro) */
+.bolha-7 {
+    width: 120px; height: 120px; right: 18%; bottom: -140px;
+    background-color: #2e8b57;
+    background-image: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(255, 223, 0, 0.4) 50%, rgba(11, 104, 55, 0.8) 100%);
+    animation: flutuarAero 20s linear infinite;
+    animation-delay: 9s;
+}
+
+/* Bolha 8: Ciências Biologia e Química (Verde Folha para Lilás) */
+.bolha-8 {
+    width: 160px; height: 160px; left: 70%; bottom: -180px;
+    background-color: #228b22;
+    background-image: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(216, 191, 216, 0.4) 50%, rgba(34, 139, 34, 0.8) 100%);
+    animation: flutuarAero 28s linear infinite;
+    animation-delay: 4s;
+}
+
+/* Bolha 9: Pedagogia (Roxo Escuro para Lilás Pastel) */
+.bolha-9 {
+    width: 90px; height: 90px; left: 12%; bottom: -100px;
+    background-color: #483d8b;
+    background-image: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(230, 200, 250, 0.5) 60%, rgba(65, 19, 140, 0.8) 100%);
+    animation: flutuarAero 16s linear infinite;
+    animation-delay: 13s;
+}
+
+/* Bolha 10: Ciências Matemática e Física (Azul Safira para Lilás) */
+.bolha-10 {
+    width: 130px; height: 130px; right: 45%; bottom: -150px;
+    background-color: #0f52ba;
+    background-image: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(218, 112, 214, 0.4) 50%, rgba(15, 32, 122, 0.8) 100%);
+    animation: flutuarAero 23s linear infinite;
+    animation-delay: 6s;
+}

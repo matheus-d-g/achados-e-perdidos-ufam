@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site para alunos da UFAM">
+    <title>Achados e Perdidos | UFAM</title>
+
+    <!-- imports externos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ece13eb306.js" crossorigin="anonymous"></script>
+
+    <!-- imports locais -->
+    <link rel="stylesheet" href="estilo_A-P.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- Bolhas flutuantes no estilo Frutiger Aero (Anos 2000) -->
+    <div class="bolha bolha-1"></div>
+    <div class="bolha bolha-2"></div>
+    <div class="bolha bolha-3"></div>
+    <div class="bolha bolha-4"></div>
+    <div class="bolha bolha-5"></div>
+    <div class="bolha bolha-6"></div>
+    <div class="bolha bolha-7"></div>
+    <div class="bolha bolha-8"></div>
+    <div class="bolha bolha-9"></div>
+    <div class="bolha bolha-10"></div>
+
+
+    <!--_____________
+    |TOPO DO SITE   |
+    -----------------
+    -->
+    <header>
+        <h1><i class="fa-solid fa-magnifying-glass"></i> Achados e Perdidos | UFAM</h1>
+    </header>
+
+    <main class="container-principal">
+        
+        <!--________________________________ 
+        | SEÇÃO 1: FORMULÁRIO DE CADASTRO   |
+        ------------------------------------
+        -->
+        <section class="secao-cadastro">
+            <h3><i class="fa-solid fa-plus"></i> Cadastrar Novo Item</h3>
+            
+            <form>
+                <div class="campo">
+                    <label for="item">O que foi encontrado ou perdido?</label>
+                    <input type="text" id="item" placeholder="Ex: bixinho de pelucia, Fone de ouvido..." required>
+                </div>
+
+                <div class="campo">
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria">
+                        <option value="chaves">🔑 Chaves</option>
+                        <option value="eletronicos">📱 Eletrônicos</option>
+                        <option value="documentos">📄 Documentos</option>
+                        <option value="outros">🎒 Outros</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="descricao">Descreva o objeto que encontrou(se quiser)</label>
+                    <input type="text" id="descricao" placeholder="'capinha de celular', 'cordao', 'um documento'" >
+                </div>
+
+                <div class="campo">
+                    <label for="local">Em qual local?</label>
+                    <select id="local">
+                        <option value="" disabled selected>Clique para selecionar um local</option>
+                        <option value="blocoA">BLOCO A</option>
+                        <option value="blocoB">BLOCO B</option>
+                        <option value="blocoC">BLOCO C</option>
+                        <option value="blocoD">BLOCO D</option>
+                        <option value="blocoE">BLOCO E </option>
+                        <option value="RU">Restaurante Universitário</option> 
+                        <option value="bosque">bosque &#128064;</option><!-- codigo para colocar dois olinhos-emoji -->
+                    </select>
+                </div>
+                <!--____________________________________________________
+                |ESTE NOVO CAMPO VAI APARECER OU MUDAR VIA JAVASCRIPT   |
+                ---------------------------------------------------------
+                -->
+                
+                <div class="campo" id="container-salas">
+                    <label for="sala">Qual a sala/ambiente?</label>
+                    <select id="sala" disabled>
+                    <option value="">Selecione primeiro o bloco...</option>
+                    </select>
+                </div>
+
+                <!--_____________________________________
+                |   Agora area do campo, usuario digita num e email |
+                -----------------------------------------
+                -->
+                <div class="campo campo-checkbox" style="display: flex; align-items: center; gap: 10px; margin: 15px 0;">
+                        <input type="checkbox" id="na_guarita" style="width: auto; cursor: pointer;">
+                        <label for="na_guarita" style="cursor: pointer; margin: 0; font-weight: 600; color: #d97706;">
+                            <i class="fa-solid fa-person-shelter"></i> Deixei este objeto na guarita/portaria
+                        </label>
+                </div><!-- ===================================================================
+                                    ATUALIZANDO: coloquei essa opção pro usuario            |
+                                    Q optou por nao colocar seus dados, vai da pessoa       |
+                                    se ela agir de má fé e levar pra casa...                |
+                    =========================================================================-->
+
+                <div class="campo">
+                    <label for="contato">Seu contato (WhatsApp) </label>
+                    <!-- O pattern garante: DDD entre 11 e 99 + o número 9 + 8 dígitos numéricos -->
+                    <input type="tel" id="contato" placeholder="Ex: 92999991111" pattern="[1-9]{2}9[0-9]{8}" title="Digite o DDD e o número completo (ex: 92999991111), apenas números.">
+                </div>
+
+                <div class="campo">
+                    <label for="E-mail">Seu E-mail</label>
+                    <!-- Mudar para type="email" força o navegador a exigir o caractere "@" e um domínio válido -->
+                    <input type="email" id="E-mail" placeholder="Ex: fulano.silva@ufam.edu.br">
+                </div>
+
+                <button type="submit">
+                    <i class="fa-solid fa-database"></i> Adicionar
+                </button>
+            </form>
+        </section>
+
+        <!-- ________________________________
+        | SEÇÃO 2: GRID DE ITENS ENCONTRADOS   |
+        -------------------------------------
+        -->
+       <!--========================================================================
+       ADICIONAR MAIS GRID PARA COLOCAR ITENES ENCONTRADOS, DEVOLVIDOS
+       =============================================================================
+        
+       
+       -->
+
+        <!--============================
+        |   ITENS QUE FORAM ACHADOS RECENTES
+        ================================-->
+        <section class="secao-listagem">
+            <h3><i class="fa-solid fa-list-check"></i> Itens Achados</h3>
+    
+            <!-- VAZIO. Para o JS preencher aqui -->
+            <div class="grid-itens" id="grid-produtos-dinamico">
+            <!-- Os cards sumiram daqui e vão entrar via JavaScript -->
+            </div>
+        </section>
+
+<!-- =================================================================================================
+            aqui é so um exeplo de como ficaria, preenchendo os dados,                              |
+            assim que cadastrar um novo item aparece ao lado "achados", "perdidos","encontrados"    |
+            ainda preciso adicionar mais coisas no site, umas funcionalidades que aprendi em IHC    |
+            para melhorar a UX, e ser um site bem simples que atenda suas expectativas              |
+======================================================================================================
+
+        <section class="secao-listagem">
+            <h3><i class="fa-solid fa-list-check"></i> Itens Encontrados</h3>
+            
+            <div class="grid-itens">
+                
+>>>>>>>>>>>>>>>>>CARD 1 (Item Fictício) 
+                <div class="card-item card-chave">
+                    <span class="tag-categoria">Capinha de Celular</span>
+                    <h4></h4>
+                    <p><i class="fa-solid fa-location-dot"></i> <strong>Local:</strong> Bloco A sala 201</p>
+                    <p><i class="fa-solid fa-envelope"></i> <strong>Contato:</strong> (92) 99999-9999</p>
+                </div>
+
+>>>>>>>>>>>>>>>> CARD 2 (Item Fictício) 
+                <div class="card-item card-eletronico">
+                    <span class="tag-categoria">fone de ouvido</span>
+                    <h4>Fone de ouvido Bluetooth preto, lado esquerdo</h4>
+                    <p><i class="fa-solid fa-location-dot"></i> <strong>Local:</strong> HALL</p>
+                    <p><i class="fa-solid fa-envelope"></i> <strong>Contato:</strong> ana.fulana@ufam.edu.br</p>
+                </div>
+
+            </div>
+        </section> 
+        
+-->
+
+    </main>
+</body>
+</html>
