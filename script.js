@@ -119,7 +119,7 @@ formulario.addEventListener("submit", async function(event) {
             formulario.reset();
             if (typeof selectSala !== 'undefined') selectSala.disabled = true;
             // ===================================================================
-            // 🛠️ CORREÇÃO IHC AQUI: Força os campos a voltarem ao estado padrão ativado    | caramba que dificil
+            // 🛠️ CORREÇÃO IHC AQUI: Força os campos a voltarem ao estado padrão ativado    | oh coisa chata meu
             // ===================================================================
             const campoContato = document.getElementById("contato");
             const campoEmail = document.getElementById("E-mail");
