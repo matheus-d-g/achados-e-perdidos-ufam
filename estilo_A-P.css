@@ -293,11 +293,8 @@ form button[type="submit"]:active {
 /* ==========================================================================
    ESTILO FRUTIGER AERO - BOLHAS DE VIDRO 3D FLUTUANTES
    ========================================================================== */
-/*
----------------------------------------------------------------------------------------EDITAR PARA ADICIONAR MAIS BOLINHAS
-*/
-/* Esfera base com reflexo de vidro tridimensional dos anos 2000 */
-/* Esfera base com reflexo de vidro tridimensional dos anos 2000 (Frutiger Aero) */
+/* Esfera com reflexo de vidro tridimensional dos anos 2000, eu gostava dessa estetica*/
+/* (Frutiger Aero) */
 .bolha {
     position: fixed;
     border-radius: 50%;
@@ -340,7 +337,8 @@ form button[type="submit"]:active {
 }
 
 /* ==================================================================
-   🎨 ESTILIZAÇÃO POR CURSOS / ÁREAS DA UFAM (GRADIENTES VIVOS)     | confesso que me empolguei um pouco quando terminei meu back-end, então resolvi deixar o site mais atraente e bonito 
+   🎨 ESTILIZAÇÃO POR CURSOS / ÁREAS DA UFAM (GRADIENTES VIVOS)   | confesso que me empolguei um pouco quando terminei meu back-end, 
+                                                                  |então resolvi deixar o site mais atraente e bonito 
    ================================================================== */
 
 /* Bolha 1: Engenharia de Produção (Azul Marinho para Ciano) */
@@ -350,7 +348,7 @@ form button[type="submit"]:active {
     background-image: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(0, 242, 254, 0.4) 50%, rgba(79, 172, 254, 0.8) 100%);
     animation: flutuarAero 26s linear infinite;
 }
-
+/*eu pesquisei as cores dos cursos...*/
 /* Bolha 2: Engenharia de Software (Azul Escuro para Roxo Elétrico) */
 .bolha-2 {
     width: 130px; height: 130px; left: 52%; bottom: -150px;
